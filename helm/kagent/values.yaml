@@ -89,7 +89,7 @@ controller:
   image:
     registry: ""
     repository: rgv151/kagent-controller
-    tag: "" # Will default to global, then Chart version
+    tag: "v0.6.11-1-g7465c28" # Will default to global, then Chart version
     pullPolicy: ""
   resources:
     requests:
@@ -103,7 +103,12 @@ controller:
     ports:
       port: 8083
       targetPort: 8083
-  env: {}
+  env: 
+    - name: SUPABASE_BASE_URL
+      value: https://fulzsyzuwsulvmcjhkto.supabase.co
+    - name: SUPABASE_ANON_KEY
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1bHpzeXp1d3N1bHZtY2poa3RvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU3NDM5OTYsImV4cCI6MjA3MTMxOTk5Nn0.fn1ojlkFM2WrmkPuz2A9HksZPBgyBTF0W9p5tMMccV4
+  
 
 # ==============================================================================
 # UI CONFIGURATION

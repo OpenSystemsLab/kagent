@@ -17,8 +17,11 @@ limitations under the License.
 package main
 
 import (
+	"os"
+
 	"github.com/kagent-dev/kagent/go/internal/httpserver/auth"
 	"github.com/kagent-dev/kagent/go/pkg/app"
+	"github.com/kagent-dev/kagent/go/pkg/supabase"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
 	// to ensure that exec-entrypoint and run can make use of them.
@@ -28,7 +31,10 @@ import (
 // nolint:gocyclo
 func main() {
 	authorizer := &auth.NoopAuthorizer{}
-	authenticator := &auth.UnsecureAuthenticator{}
+	authenticator := &supabase.SupabaseAuthenticator{
+		AuthClient: supabase.NewAuthClient(os.Getenv("SUPABASE_BASE_URL"), os.Getenv("SUPABASE_ANON_KEY")),
+	}
+
 	app.Start(func(bootstrap app.BootstrapConfig) (*app.ExtensionConfig, error) {
 		return &app.ExtensionConfig{
 			Authenticator:    authenticator,

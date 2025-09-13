@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/kagent-dev/kagent/go/internal/a2a"
 	"github.com/kagent-dev/kagent/go/internal/database"
+	"github.com/kagent-dev/kagent/go/internal/httpserver/cors"
 	"github.com/kagent-dev/kagent/go/internal/httpserver/handlers"
 	common "github.com/kagent-dev/kagent/go/internal/utils"
 	"github.com/kagent-dev/kagent/go/internal/version"
@@ -213,6 +214,7 @@ func (s *HTTPServer) setupRoutes() {
 	s.router.PathPrefix(APIPathA2A + "/{namespace}/{name}").Handler(s.config.A2AHandler)
 
 	// Use middleware for common functionality
+	s.router.Use(cors.CorsMiddleware)
 	s.router.Use(auth.AuthnMiddleware(s.authenticator))
 	s.router.Use(contentTypeMiddleware)
 	s.router.Use(loggingMiddleware)
