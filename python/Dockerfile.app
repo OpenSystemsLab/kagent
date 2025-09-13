@@ -1,6 +1,6 @@
 ARG KAGENT_ADK_VERSION=latest
 ARG DOCKER_REGISTRY=ghcr.io
-ARG DOCKER_REPO=kagent-dev/kagent/kagent-adk
+ARG DOCKER_REPO=rgv151/kagent-adk
 FROM $DOCKER_REGISTRY/$DOCKER_REPO:$KAGENT_ADK_VERSION
 
 # Offline mode

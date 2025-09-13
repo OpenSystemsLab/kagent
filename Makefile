@@ -1,8 +1,8 @@
 # Image configuration
-DOCKER_REGISTRY ?= localhost:5001
+DOCKER_REGISTRY ?= registry-1.docker.io
 BASE_IMAGE_REGISTRY ?= cgr.dev
-DOCKER_REPO ?= kagent-dev/kagent
-HELM_REPO ?= oci://ghcr.io/kagent-dev
+DOCKER_REPO ?= rgv151
+HELM_REPO ?= oci://ghcr.io/OpenSystemsLab
 HELM_DIST_FOLDER ?= dist
 
 BUILD_DATE := $(shell date -u '+%Y-%m-%d')
@@ -29,9 +29,9 @@ DOCKER_BUILDER ?= docker buildx
 DOCKER_BUILD_ARGS ?= --push --platform linux/$(LOCALARCH)
 KIND_CLUSTER_NAME ?= kagent
 
-CONTROLLER_IMAGE_NAME ?= controller
-UI_IMAGE_NAME ?= ui
-APP_IMAGE_NAME ?= app
+CONTROLLER_IMAGE_NAME ?= kagent-controller
+UI_IMAGE_NAME ?= kagent-ui
+APP_IMAGE_NAME ?= kagent-app
 KAGENT_ADK_IMAGE_NAME ?= kagent-adk
 
 CONTROLLER_IMAGE_TAG ?= $(VERSION)
